@@ -1,24 +1,85 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計(furima-29706)
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+| Column        | Type    | Options     |
+| ------------- | ------- | ----------- |
+| nickname      | string  | null: false |
+| email         | string  | null: false |
+| password      | string  | null: false |
+| family_name   | string  | null: false |
+| first_name    | string  | null: false |
+| family_name_k | string  | null: false |
+| first_name_k  | string  | null: false |
+| birthday      | date    | null: false |
 
-* System dependencies
 
-* Configuration
+### users-Association
 
-* Database creation
+- has_many :items
+- has_many :comments
+- has_many :orders
 
-* Database initialization
 
-* How to run the test suite
+## items テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| title         | string     | null: false                    |
+| text          | text       | null: false                    |
+| category      | integer    | null: false                    |
+| condition     | integer    | null: false                    |
+| delivery_fee  | integer    | null: false                    |
+| delivery_area | integer    | null: false                    |
+| shipping_day  | integer    | null: false                    |
+| price         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
 
-* Deployment instructions
 
-* ...
+### items-Association
+
+- belongs_to :user
+- has_many :comments
+- has_one :order
+
+## shippings テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | -------    | ------------------------------ |
+| postal_code   | string     | null: false                    |
+| prefectures   | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building      | string     |                                |
+| tel           | string     | null: false                    |
+| order         | references | null: false, foreign_key: true |
+
+### shippings-Association
+
+- belongs_to :order
+
+## comments テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| comment | text       |                                |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+### comments-Association
+
+- belongs_to :user
+- belongs_to :item
+
+## orders テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+- has_one :shipping
+- belongs_to :user
+- belongs_to :item
