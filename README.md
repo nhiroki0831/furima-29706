@@ -13,9 +13,7 @@
 | first_name    | string  | null: false |
 | family_name_k | string  | null: false |
 | first_name_k  | string  | null: false |
-| year          | integer | null: false |
-| month         | integer | null: false |
-| day           | integer | null: false |
+| birthday      | date    | null: false |
 
 
 ### users-Association
@@ -23,6 +21,7 @@
 - has_many :items
 - has_many :purchases
 - has_many :comments
+- has_many :orders
 
 
 ## items テーブル
@@ -31,11 +30,11 @@
 | ------------- | ---------- | ------------------------------ |
 | title         | string     | null: false                    |
 | text          | text       | null: false                    |
-| category      | string     | null: false                    |
-| condition     | string     | null: false                    |
+| category      | integer    | null: false                    |
+| condition     | integer    | null: false                    |
 | delivery_fee  | integer    | null: false                    |
-| shipping_area | string     | null: false                    |
-| shipping_day  | string     | null: false                    |
+| delivery_area | integer    | null: false                    |
+| shipping_day  | integer    | null: false                    |
 | price         | integer    | null: false                    |
 | user          | references | null: false, foreign_key: true |
 
@@ -45,20 +44,18 @@
 - belongs_to :user
 - has_one :purchase
 - has_many :comments
+- has_many :orders
 
 ## purchases テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | -------    | ------------------------------ |
-| card_number   | integer    | null: false                    |
-| limit_mouth   | integer    | null: false                    |
-| limit_year    | integer    | null: false                    |
-| postal_code   | integer    | null: false                    |
-| prefectures   | string     | null: false                    |
+| postal_code   | string     | null: false                    |
+| prefectures   | integer    | null: false                    |
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | building      | string     |                                |
-| tel           | integer    | null: false                    |
+| tel           | string     | null: false                    |
 | user          | references | null: false, foreign_key: true |
 | item          | references | null: false, foreign_key: true |
 
@@ -76,6 +73,16 @@
 | item    | references | null: false, foreign_key: true |
 
 ### comments-Association
+
+- belongs_to :user
+- belongs_to :item
+
+## orders テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
 - belongs_to :user
 - belongs_to :item
