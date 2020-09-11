@@ -1,24 +1,81 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計(furima-29706)
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+| Column        | Type    | Options     |
+| ------------- | ------- | ----------- |
+| nickname      | string  | null: false |
+| email         | string  | null: false |
+| password      | string  | null: false |
+| family_name   | string  | null: false |
+| first_name    | string  | null: false |
+| family_name_k | string  | null: false |
+| first_name_k  | string  | null: false |
+| year          | integer | null: false |
+| month         | integer | null: false |
+| day           | integer | null: false |
 
-* System dependencies
 
-* Configuration
+### users-Association
 
-* Database creation
+- has_many :items
+- has_many :purchases
+- has_many :comments
 
-* Database initialization
 
-* How to run the test suite
+## items テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| title         | string     | null: false                    |
+| text          | text       | null: false                    |
+| category      | string     | null: false                    |
+| condition     | string     | null: false                    |
+| delivery_fee  | integer    | null: false                    |
+| shipping_area | string     | null: false                    |
+| shipping_day  | string     | null: false                    |
+| price         | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
 
-* Deployment instructions
 
-* ...
+### items-Association
+
+- belongs_to :user
+- has_one :purchase
+- has_many :comments
+
+## purchases テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | -------    | ------------------------------ |
+| card_number   | integer    | null: false                    |
+| limit_mouth   | integer    | null: false                    |
+| limit_year    | integer    | null: false                    |
+| postal_code   | integer    | null: false                    |
+| prefectures   | string     | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building      | string     |                                |
+| tel           | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
+
+### purchases-Association
+
+- belongs_to :user
+- belongs_to :item
+
+## comments テーブル
+
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| comment | string     |                                |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+
+### comments-Association
+
+- belongs_to :user
+- belongs_to :item
