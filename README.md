@@ -19,7 +19,6 @@
 ### users-Association
 
 - has_many :items
-- has_many :purchases
 - has_many :comments
 - has_many :orders
 
@@ -42,11 +41,10 @@
 ### items-Association
 
 - belongs_to :user
-- has_one :purchase
 - has_many :comments
-- has_many :orders
+- has_one :orders
 
-## purchases テーブル
+## shippings テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | -------    | ------------------------------ |
@@ -56,19 +54,17 @@
 | address       | string     | null: false                    |
 | building      | string     |                                |
 | tel           | string     | null: false                    |
-| user          | references | null: false, foreign_key: true |
-| item          | references | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 
-### purchases-Association
+### shippings-Association
 
-- belongs_to :user
-- belongs_to :item
+- belongs_to :order
 
 ## comments テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| comment | string     |                                |
+| comment | text       |                                |
 | user    | references | null: false, foreign_key: true |
 | item    | references | null: false, foreign_key: true |
 
@@ -84,5 +80,6 @@
 | user    | references | null: false, foreign_key: true |
 | item    | references | null: false, foreign_key: true |
 
+- has_one :shipping
 - belongs_to :user
 - belongs_to :item
