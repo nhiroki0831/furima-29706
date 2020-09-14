@@ -5,9 +5,18 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
+  end
+
+  def create
+    Item.create(item_params)
   end
 
   private
+
+  def item_params
+    params.require(:item).permit(:title, :text, :category, :condition, :derivery_fee, :delivery_area, :shipping_day, :price)
+  end
 
   def move_to_index
     unless user_signed_in?
