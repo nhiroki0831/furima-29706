@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_area_genre
   belongs_to_active_hash :shipping_day_genre
 
-  validates :title,         presence: true, length: { maximum: 40}
+  validates :title,         presence: true, length: { maximum: 40 }
   validates :text,          presence: true, length: { maximum: 1000}
   validates :category,      presence: true
   validates :condition,     presence: true
@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   validates :delivery_area, presence: true
   validates :shipping_day,  presence: true
   validates :price,         presence: true, numericality: { with: /\A[0-9]+\z/}
-  
+
   validates :category,      numericality: { other_than: 1 }
   validates :condition,     numericality: { other_than: 1 }
   validates :delivery_fee,  numericality: { other_than: 1 }
@@ -23,7 +23,6 @@ class Item < ApplicationRecord
 
   validates :image,         presence: true
 
-belongs_to :user
-has_one_attached :image
-
+  belongs_to :user
+  has_one_attached :image
 end
