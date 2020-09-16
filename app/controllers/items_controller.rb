@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index]
 
   def index
-    @item = Item.find(1)
   end
 
   def new

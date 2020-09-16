@@ -4,7 +4,7 @@ function profit() {
   const profit = document.getElementById("profit"); 
   itemPrice.addEventListener('keyup',()=> {
     const price = itemPrice.value;
-    if (price < 300 && price > 9999999){
+    if (price < 300 || price > 9999999){
       addTaxPrice.innerHTML = ""
       profit.innerHTML = ""
       } else {
