@@ -7,13 +7,13 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_day_genre
 
   validates :title,         presence: true, length: { maximum: 40 }
-  validates :text,          presence: true, length: { maximum: 1000}
+  validates :text,          presence: true, length: { maximum: 1000 }
   validates :category,      presence: true
   validates :condition,     presence: true
   validates :delivery_fee,  presence: true
   validates :delivery_area, presence: true
   validates :shipping_day,  presence: true
-  validates :price,         presence: true, numericality: { with: /\A[0-9]+\z/, :greater_than_or_equal_to => 300 , :less_than_or_equal_to => 9999999 }
+  validates :price,         presence: true, numericality: { with: /\A[0-9]+\z/, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
   validates :category,      numericality: { other_than: 1 }
   validates :condition,     numericality: { other_than: 1 }
