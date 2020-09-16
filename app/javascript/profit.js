@@ -8,7 +8,7 @@ function profit() {
     if (price < 300){
       addTaxPrice.innerHTML = ""
       profit.innerHTML = ""
-      } else if (price >= 9999999){
+      } else if (price > 9999999){
       addTaxPrice.innerHTML = ""
       profit.innerHTML = ""
       } else {
