@@ -4,7 +4,6 @@ function profit() {
   const profit = document.getElementById("profit"); 
   itemPrice.addEventListener('keyup',()=> {
     const price = itemPrice.value;
-    console.log(price);
     if (price < 300){
       addTaxPrice.innerHTML = ""
       profit.innerHTML = ""
