@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   validates :delivery_area_id, numericality: { other_than: 1 }
   validates :shipping_day_id,  numericality: { other_than: 1 }
 
-  validates :image,         presence: true
+  validates :image, presence: true
 
   belongs_to :user
   has_one_attached :image
