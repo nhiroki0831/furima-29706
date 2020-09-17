@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :simplification1 , only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -19,16 +20,16 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    #@item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
+    #@item = Item.find(params[:id])
   end
 
   def update
-    item = Item.find(params[:id])
-    if item.update(item_params)
+    #item = Item.find(params[:id])
+    if @item.update(item_params)
       redirect_to root_path
     else
       render :new
@@ -36,8 +37,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    if item.destroy
+    #item = Item.find(params[:id])
+    if @item.destroy
       redirect_to root_path
     else
       render :new
@@ -52,5 +53,9 @@ class ItemsController < ApplicationController
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?
+  end
+
+  def simplification1
+    @item = Item.find(params[:id])
   end
 end
