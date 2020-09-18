@@ -1,17 +1,11 @@
 class OrdersController < ApplicationController
 
   def index
+    @item = Item.find(params[:item_id])
   end
 
   def create
-    @order = Order.new(order_params）
-    if @order.valid?
-      pay_item
-      @order.save
-      return redirect_to root_path
-    else
-      render 'index'
-    end
+    #後でPAYJPの処理を記載
   end
 
   private
