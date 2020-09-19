@@ -1,0 +1,19 @@
+class OrderShipping
+
+  include ActiveModel::Model
+  attr_accessor :postal_code, :prefecture_id, :city, :address, :building, :tel , :user_id , :item_id
+
+  with_options presence: true do
+    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Input full-width characters."}
+    validates :prefecture_id
+    validates :city
+    validates :address
+    validates :tel, format: { with: /\A\d{9}\z/, message: "is invalid. Input half-width characters."}
+  end
+
+  def save
+    order = Order.create!(user_id: user_id, item_id: item_id)
+    Shipping.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, tel: tel, order_id: order.id)
+  end
+
+end
