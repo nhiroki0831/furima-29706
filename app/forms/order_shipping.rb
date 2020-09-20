@@ -3,13 +3,13 @@ class OrderShipping
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture_id, :city, :address, :building, :tel , :user_id , :item_id, :token
 
-  #with_options presence: true do
-    #validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Input full-width characters."}
-    #validates :prefecture_id
-    #validates :city
-    #validates :address
-    #validates :tel, format: { with: /\A\d{9}\z/, message: "is invalid. Input half-width characters."}
-  #end
+  with_options presence: true do
+    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
+    validates :prefecture_id,      numericality: { other_than: 1 }
+    validates :city
+    validates :address
+    validates :tel, format: { with: /\A\d{9}\z/ ,lingth: {minmum: 11}}
+  end
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
