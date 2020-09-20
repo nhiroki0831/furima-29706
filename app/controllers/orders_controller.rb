@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @order = OrderShipping.new
+    if @item.user == current_user
+      redirect_to root_path
+    end
   end
 
   def create
@@ -31,5 +34,6 @@ class OrdersController < ApplicationController
       currency:'jpy'
     )
   end
+
 
 end
