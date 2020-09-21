@@ -4,11 +4,10 @@ class OrdersController < ApplicationController
 
   def index
     @order = OrderShipping.new
-    redirect_to root_path if @item.user == current_user
+    redirect_to root_path if @item.user == current_user || @item.order != nil
   end
 
   def create
-    binding.pry
     @order = OrderShipping.new(order_params)
     if @order.valid?
       pay_item
