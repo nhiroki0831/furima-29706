@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
+
+  before_action :simplification2, only: [:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     @order = OrderShipping.new
     redirect_to root_path if @item.user == current_user
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = OrderShipping.new(order_params)
     if @order.valid?
       pay_item
@@ -31,4 +32,9 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def simplification2
+    @item = Item.find(params[:item_id])
+  end
+
 end
