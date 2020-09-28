@@ -1,10 +1,9 @@
 class OrdersController < ApplicationController
-
   before_action :simplification2, only: [:index, :create]
 
   def index
     @order = OrderShipping.new
-    redirect_to root_path if @item.user == current_user || @item.order != nil
+    redirect_to root_path if @item.user == current_user || !@item.order.nil?
     redirect_to root_path unless user_signed_in?
   end
 
@@ -37,5 +36,4 @@ class OrdersController < ApplicationController
   def simplification2
     @item = Item.find(params[:item_id])
   end
-
 end

@@ -15,11 +15,11 @@ class Item < ApplicationRecord
   validates :shipping_day_id,  presence: true
   validates :price,            presence: true, numericality: { with: /\A[0-9]+\z/, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
-  validates :category_id,      numericality: { other_than: 1 ,message:'を選択してください'}
-  validates :condition_id,     numericality: { other_than: 1 ,message:'を選択してください'}
-  validates :delivery_fee_id,  numericality: { other_than: 1 ,message:'を選択してください'}
-  validates :delivery_area_id, numericality: { other_than: 1 ,message:'を選択してください'}
-  validates :shipping_day_id,  numericality: { other_than: 1 ,message:'を選択してください'}
+  validates :category_id,      numericality: { other_than: 1, message: 'を選択してください'}
+  validates :condition_id,     numericality: { other_than: 1, message: 'を選択してください'}
+  validates :delivery_fee_id,  numericality: { other_than: 1, message: 'を選択してください'}
+  validates :delivery_area_id, numericality: { other_than: 1, message: 'を選択してください'}
+  validates :shipping_day_id,  numericality: { other_than: 1, message: 'を選択してください'}
 
   validates :image, presence: {message: 'ファイルを選択してください'}
 
