@@ -21,7 +21,7 @@ class Item < ApplicationRecord
   validates :delivery_area_id, numericality: { other_than: 1 ,message:'を選択してください'}
   validates :shipping_day_id,  numericality: { other_than: 1 ,message:'を選択してください'}
 
-  validates :image, presence: true
+  validates :image, presence: {message: 'ファイルを選択してください'}
 
   belongs_to :user
   has_one :order
