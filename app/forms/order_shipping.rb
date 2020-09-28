@@ -3,10 +3,10 @@ class OrderShipping
   attr_accessor :postal_code, :prefecture_id, :city, :address, :building, :tel, :user_id, :item_id, :token
 
   with_options presence: true do
-    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
+    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ , message: "はハイフン(-)を使用してください"}
     validates :city
     validates :address
-    validates :tel, format: { with: /\A\d{10}$|^\d{11}\z/ }
+    validates :tel, format: { with: /\A\d{10}$|^\d{11}\z/ , message: "はハイフン(-)を使用せず数字のみ入力して下さい" }
     validates :token
   end
 
