@@ -20,64 +20,64 @@ describe User do
       it 'nicknameが空だと登録できない' do
         @user.nickname = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname can't be blank")
+        expect(@user.errors.full_messages).to include("ニックネームを入力してください")
       end
       it 'emailが空だと登録できない' do
         @user.email = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email can't be blank")
+        expect(@user.errors.full_messages).to include("Eメールを入力してください")
       end
       it '重複したemailが存在する場合は登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include('Email has already been taken')
+        expect(another_user.errors.full_messages).to include('Eメールはすでに存在します')
       end
       it 'passwordが空では登録できない' do
         @user.password = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password can't be blank")
+        expect(@user.errors.full_messages).to include("パスワードを入力してください", "パスワード（確認用）とパスワードの入力が一致しません")
       end
       it 'passwordが5文字以下だと登録できない' do
         @user.password = 'aaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password", 'Password is too short (minimum is 6 characters)')
+        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません", "パスワードは6文字以上で入力してください")
       end
       it 'first_nameが空だと登録できない' do
         @user.first_name = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name can't be blank", 'First name is invalid')
+        expect(@user.errors.full_messages).to include("名前を入力してください", "名前は全角で入力してください")
       end
       it 'family_nameが空だと登録できない' do
         @user.family_name = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name can't be blank", 'Family name is invalid')
+        expect(@user.errors.full_messages).to include("名字を入力してください", "名字は全角で入力してください")
       end
       it 'first_name_kが空だと登録できない' do
         @user.first_name_k = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name k can't be blank", 'First name k is invalid')
+        expect(@user.errors.full_messages).to include("名前(カタカナ)を入力してください", "名前(カタカナ)は全角で入力してください")
       end
       it 'first_name_kが全角カタカナ以外だと登録できない' do
         @user.first_name_k = 'あああ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name k is invalid')
+        expect(@user.errors.full_messages).to include("名前(カタカナ)は全角で入力してください")
       end
       it 'family_name_kが空だと登録できない' do
         @user.family_name_k = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name k can't be blank", 'Family name k is invalid')
+        expect(@user.errors.full_messages).to include("名字(カタカナ)を入力してください", "名字(カタカナ)は全角で入力してください")
       end
       it 'family_name_kが全角カタカナ以外だと登録できない' do
         @user.family_name_k = 'あああ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Family name k is invalid')
+        expect(@user.errors.full_messages).to include("名字(カタカナ)は全角で入力してください")
       end
       it 'birthdayが空だと登録できない' do
         @user.birthday = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("Birthday can't be blank")
+        expect(@user.errors.full_messages).to include("生年月日を入力してください")
       end
     end
   end
