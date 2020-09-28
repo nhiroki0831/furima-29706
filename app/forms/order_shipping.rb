@@ -10,7 +10,7 @@ class OrderShipping
     validates :token
   end
 
-  validates :prefecture_id, numericality: { other_than: 1 }
+  validates :prefecture_id, numericality: { other_than: 1 , message:'を選択してください' }
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
