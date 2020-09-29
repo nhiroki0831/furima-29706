@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   validates :shipping_day_id,  presence: true
   validates :price,            presence: true, numericality: { with: /\A[0-9]+\z/, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
-  validates :category_id,      numericality: { other_than: 1, message: 'を選択してください'}
+  validates :category_id,      numericality: { other_than: 1, message: 'を選択してください' }
   validates :condition_id,     numericality: { other_than: 1, message: 'を選択してください'}
   validates :delivery_fee_id,  numericality: { other_than: 1, message: 'を選択してください'}
   validates :delivery_area_id, numericality: { other_than: 1, message: 'を選択してください'}
@@ -28,10 +28,10 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   def self.search(search)
-    if search != nil
-      Item.where('title LIKE(?)', "%#{search}%")      
+    if !search.nil?
+      Item.where('title LIKE(?)', "%#{search}%")
     else
       Item.all
     end
-  end  
+  end
 end
