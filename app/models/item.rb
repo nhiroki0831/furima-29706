@@ -26,4 +26,12 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :order
   has_one_attached :image
+
+  def self.search(search)
+    if search != nil
+      Item.where('title LIKE(?)', "%#{search}%")      
+    else
+      Item.all
+    end
+  end  
 end
