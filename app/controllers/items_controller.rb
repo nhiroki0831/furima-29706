@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :search]
   before_action :simplification1, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -39,6 +39,10 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def search
+    @items = Item.search(params[:keyword]).order('created_at DESC')
   end
 
   private
