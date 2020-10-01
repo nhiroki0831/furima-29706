@@ -88,7 +88,7 @@
     </div>
   </div>
   <%# /商品の概要 %>
-  
+  <% if user_signed_in? %>
   <div class="comment-box">
     <%= form_with model: [@item, @comment],local: true do |f| %>
       <%= f.text_field :comment ,class:"comment-text" %>
@@ -109,6 +109,7 @@
       <% end %>
     </div>  
   </div>
+  <% end %>
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
