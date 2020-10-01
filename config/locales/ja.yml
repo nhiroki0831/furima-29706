@@ -18,6 +18,8 @@ ja:
        delivery_area_id: 発送元の地域
        shipping_day_id: 発送までの日数
        image: 画像       
+     comment:
+       comment: コメント  
  activemodel:
    attributes:     
      order_shipping:
