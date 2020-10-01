@@ -86,7 +86,7 @@
 .detail-item {
   width: 20%;
   background-color: #eee;
-  border: 1px solid #dedede;
+  border: 1px solid #dedede48;
   font-size: 14px;
   text-align: center;
 }
@@ -203,4 +203,11 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 23px;
+}
+
+.item_comment{
+  border: #dedede solid 2px;
+  margin-bottom: 2px;
+  text-align: left;
+  padding-left: 5px;
 }

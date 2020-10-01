@@ -16,10 +16,12 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :new
-    end
+    end  
   end
 
   def show
+    @comments = @item.comments.includes(:item)
+    @comment = Comment.new
   end
 
   def edit
