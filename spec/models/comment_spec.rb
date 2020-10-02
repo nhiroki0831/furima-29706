@@ -25,7 +25,7 @@ describe Comment do
         @comment.item = nil
         @comment.valid?
         expect(@comment.errors.full_messages).to include('Itemを入力してください')
-      end      
+      end
     end
   end
 end
